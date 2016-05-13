@@ -3,6 +3,7 @@ var {
   Image,
   Text,
   View,
+  Linking
 } = React;
 var SimpleMarkdown = require('simple-markdown');
 var _ = require('lodash');
@@ -100,7 +101,10 @@ module.exports = function(styles) {
         state.withinText = true;
         return React.createElement(Text, {
           key: state.key,
-          style: styles.autolink
+          style: styles.autolink,
+          onPress: function () {
+            Linking.openURL(node.content[0].content);
+          }
         }, output(node.content, state));
       }
     },
